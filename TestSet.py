@@ -43,16 +43,16 @@ class CMajorScaleTest(TestSet):
         res = NoteSequence(bpm=60, tickrate=120)
         for n in self.Notes:
             res.addNote(n.copy(duration=(1, 2)))
-        res.delay((2, 1))
-        res.addNote(self.Notes[0])
-        res.delay((1, 1))
         test_note: Note = random.choice(self.Notes)
-        res.addNote(test_note)
+        res.delay((2, 1))
+        res.addNote(test_note.copy(duration=(2, 1)))
+        # res.delay((1, 1))
+        # res.addNote(test_note)
 
         question = "What's the name of the last note: "
 
         def check(ans: str):
-            if ans.lower() == test_note.name:
+            if sciName2Pitch(ans) == test_note.pitch:
                 print("Correct")
             else:
                 print("Wrong, the answer is {}".format(test_note.name))
