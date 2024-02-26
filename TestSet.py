@@ -25,7 +25,7 @@ class Question:
         for msg in self.seq.play():
             port.send(msg)
         ans = input(self.question)
-        self.check(ans)
+        return self.check(ans)
 
 
 
@@ -54,8 +54,10 @@ class CMajorScaleTest(TestSet):
         def check(ans: str):
             if sciName2Pitch(ans) == test_note.pitch:
                 print("Correct")
+                return True
             else:
                 print("Wrong, the answer is {}".format(test_note.name))
+                return False
 
         return Question(res, question, check)
 

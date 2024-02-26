@@ -11,7 +11,7 @@ def play_midi(filepath, port):
         port.send(msg)
 
 
-def narrow(obj, bottom, top):
+def clamp(obj, bottom, top):
     if obj > top:
         return top
     elif obj < bottom:

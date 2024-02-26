@@ -10,5 +10,16 @@ port = mido.open_output(mido.get_output_names()[n])
 
 test = CMajorScaleTest(interval_secs=1)
 
+i = 0
+rate = 0
 for question in test:
-    question.ask(port)
+    if(i >= 20):
+        break
+    res = question.ask(port)
+    i += 1
+    if res:
+        rate += (1-rate)/i
+    else:
+        rate += -rate/i
+
+print('Correctness：{}'.format(rate))

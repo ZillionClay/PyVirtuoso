@@ -1,6 +1,6 @@
 import mido
 
-from util import narrow
+from util import clamp
 
 NamePitch: dict[str, int] = {
     'c': +0,
@@ -71,8 +71,8 @@ def sciName2Pitch(note_name: str) -> int:
 class Note:
 
     def __init__(self, pitch: int, vel: int, duration: tuple[int, int], name: str = '', channel=0):
-        self.pitch: int = narrow(pitch, 0, 128)
-        self.vel: int = narrow(vel, 0, 128)
+        self.pitch: int = clamp(pitch, 0, 128)
+        self.vel: int = clamp(vel, 0, 128)
         self.duration: tuple[int, int] = duration
         self.name = name
         self.channel = channel
